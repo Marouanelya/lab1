@@ -20,6 +20,7 @@ public class PublicationService {
 
     public void post(Post post){
         postRepository.save(post);
+        //kkkkkk
     }
 
     public List<Post> fetchAll(){

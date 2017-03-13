@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * Created by E.Marouane on 13/03/2017.
  */
-public class IPostRepositoryImpl implements IPostRepository {
+public class PostRepositoryImpl implements IPostRepository {
 
     private List<Post> db = new ArrayList<Post>();
 

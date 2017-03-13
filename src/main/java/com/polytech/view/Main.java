@@ -3,7 +3,7 @@ package com.polytech.view;
 import com.polytech.business.Post;
 import com.polytech.business.PublicationService;
 import com.polytech.repository.IPostRepository;
-import com.polytech.repository.IPostRepositoryImpl;
+import com.polytech.repository.PostRepositoryImpl;
 
 import java.util.List;
 
@@ -13,8 +13,8 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) {
-        IPostRepository IPostRepository = new IPostRepositoryImpl();
-        PublicationService publicationService = new PublicationService(IPostRepository);
+        IPostRepository IIPostRepository = new PostRepositoryImpl();
+        PublicationService publicationService = new PublicationService(IIPostRepository);
         Post post = new Post("Hello World");
         publicationService.post(post);
         List<Post> posts = publicationService.fetchAll();

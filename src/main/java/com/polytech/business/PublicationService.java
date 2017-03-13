@@ -1,7 +1,6 @@
 package com.polytech.business;
 
-import com.polytech.repository.PostRepository;
-import com.polytech.repository.PostRepositoryImpl;
+import com.polytech.repository.IPostRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,21 +8,21 @@ import java.util.List;
 /**
  * Created by E.Marouane on 13/03/2017.
  */
-public class PublicationService {
+public class PublicationService implements IPublicationService {
 
     private List<Post> liste = new ArrayList<Post>();
-    private PostRepository postRepository;
+    private IPostRepository IPostRepository;
 
-    public PublicationService(PostRepository postRepository) {
-        this.postRepository = postRepository;
+    public PublicationService(IPostRepository IPostRepository) {
+        this.IPostRepository = IPostRepository;
     }
 
     public void post(Post post){
-        postRepository.save(post);
+        IPostRepository.save(post);
     }
 
     public List<Post> fetchAll(){
-        return postRepository.findAll();
+        return IPostRepository.findAll();
     }
 
 }

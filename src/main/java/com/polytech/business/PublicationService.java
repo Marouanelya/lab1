@@ -1,7 +1,7 @@
 package com.polytech.business;
 
 import com.polytech.repository.PostRepository;
-import javafx.geometry.Pos;
+import com.polytech.repository.PostRepositoryImpl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +20,6 @@ public class PublicationService {
 
     public void post(Post post){
         postRepository.save(post);
-        //kkkkkk
     }
 
     public List<Post> fetchAll(){

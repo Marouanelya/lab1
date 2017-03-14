@@ -11,6 +11,7 @@ public class PublicationService implements IPublicationService {
     private List<Post> liste = new ArrayList<Post>();
     private com.polytech.repository.IPostRepository IIPostRepository;
 
+
     public PublicationService(com.polytech.repository.IPostRepository IIPostRepository) {
         this.IIPostRepository = IIPostRepository;
     }

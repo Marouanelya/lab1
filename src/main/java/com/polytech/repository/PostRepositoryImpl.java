@@ -2,6 +2,8 @@ package com.polytech.repository;
 
 import com.polytech.business.Post;
 
+import javax.sql.DataSource;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,13 +12,37 @@ import java.util.List;
  */
 public class PostRepositoryImpl implements IPostRepository {
 
-    private List<Post> db = new ArrayList<Post>();
+    private final DataSource dataSource;
+
+    public PostRepositoryImpl(DataSource dataSource) {
+        this.dataSource = dataSource;
+    }
 
     public void save(Post post) {
-        db.add(post);
+        try{
+            Connection connection = dataSource.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement("insert into POST (CONTENT) values (?)");
+            preparedStatement.setString(1, post.getContent());
+            preparedStatement.execute();
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
     }
 
     public List<Post> findAll() {
-        return db;
+        List<Post> liste = new ArrayList<Post>();
+        try{
+            Connection connection = dataSource.getConnection();
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("select * from POST");
+            while(resultSet.next()){
+                liste.add(new Post(resultSet.getString("CONTENT")));
+            }
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
+        return liste;
     }
 }
